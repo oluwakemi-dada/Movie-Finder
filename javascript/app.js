@@ -45,17 +45,6 @@ const closeModal = () => {
   document.querySelector('.overlay').classList.add('hidden');
 };
 
-// SHOW MODAL
-// const showModal = () => {
-//   document.querySelector('.modal').classList.remove('hidden');
-//   document.querySelector('.overlay').classList.remove('hidden');
-// };
-
-// // SHOW ERROR MESSAGE
-// const errorMessage = (msg) => {
-//   ui.showErrorMessage(msg);
-// };
-
 // SEARCH MOVIES
 if (searchMovie) {
   searchMovie.addEventListener('keyup', (e) => {

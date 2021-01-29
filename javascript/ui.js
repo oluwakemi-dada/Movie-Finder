@@ -2,7 +2,7 @@ class UI {
   constructor() {
     this.movies = document.querySelector('.movies');
     this.baseURL = 'https://image.tmdb.org/t/p';
-    this.fileSize = '/original';
+    this.fileSize = '/w500';
   }
 
   prepareMovies(movies) {
@@ -26,7 +26,6 @@ class UI {
   }
 
   showMovies(movies) {
-    // console.log(movies);
     this.movies.innerHTML = `<div class='search-result'></div>`;
     const searchResult = document.querySelector('.search-result');
     let output = '';
@@ -47,12 +46,10 @@ class UI {
   }
 
   showMovieDetails(details) {
-    // console.log(details);
     let genres = [];
     details.genres.forEach((genre) => {
       genres.push(genre.name);
     });
-
     const movieGenres = genres.join(' / ');
 
     document.querySelector('.movies').innerHTML = `
@@ -79,7 +76,6 @@ class UI {
   }
 
   showPopularMovies(movies) {
-    // console.log(movies);
     const output = this.prepareMovies(movies);
     document.querySelector('.popular-movies').innerHTML = output;
   }
@@ -111,7 +107,6 @@ class UI {
     });
 
     // Populate UI
-    // console.log(favouriteMoviesList);
     let output = '';
     const container = `
       <div class="fav-container"></div>
