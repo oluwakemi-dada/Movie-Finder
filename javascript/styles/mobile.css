@@ -1,0 +1,100 @@
+@media (max-width: 1024px) {
+  .popular-movies,
+  .top-rated-movies,
+  .search-result {
+    grid-gap: 5rem;
+  }
+
+  .movies-category,
+  .search-result {
+    padding: 7rem;
+  }
+
+  .movie-details {
+    grid-gap: 7rem;
+    padding: 10rem 10rem;
+  }
+
+  .modal {
+    width: 40%;
+    padding: 6rem 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .popular-movies,
+  .top-rated-movies,
+  .search-result {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5rem;
+  }
+  .movies-category,
+  .search-result {
+    padding: 7rem;
+  }
+
+  .movie-details {
+    grid-template-columns: 1fr;
+    grid-gap: 7rem;
+    padding: 10rem 17rem;
+  }
+
+  .modal {
+    width: 50%;
+    padding: 5rem 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 3rem;
+  }
+
+  .navbar > *:last-child {
+    margin-top: 1rem;
+  }
+
+  .popular-movies,
+  .top-rated-movies,
+  .search-result {
+    grid-template-columns: 1fr;
+    grid-gap: 8rem;
+  }
+
+  .movies-category,
+  .search-result {
+    padding: 5%;
+  }
+
+  .movie-title-search,
+  .movie-date-search {
+    font-size: 2rem;
+  }
+
+  .movies-category h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    margin-top: 4rem;
+  }
+
+  .movie-details {
+    grid-template-columns: 1fr;
+    grid-gap: 3rem;
+    padding: 5rem 5%;
+  }
+
+  .movie-details-text > *:first-child {
+    font-size: 3rem;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 4rem 1rem;
+  }
+
+  .empty-list-msg {
+    padding: 2rem 1.5rem;
+  }
+}
