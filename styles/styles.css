@@ -36,6 +36,7 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 2rem 5rem;
+  position: relative;
 }
 
 .navbar > *:last-child > * {
@@ -52,7 +53,6 @@ a {
 }
 
 .navbar input {
-  position: relative;
   z-index: 1;
   outline: none;
   border: none;

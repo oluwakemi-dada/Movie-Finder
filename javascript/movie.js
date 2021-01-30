@@ -7,7 +7,7 @@ class Movie {
   async searchMovie(movieTitle) {
     this.spinner.style.display = 'block';
     // Make the search bar visible while loading
-    document.querySelector('.navbar input').style.zIndex = '4';
+    document.querySelector('.navbar').style.zIndex = '4';
     const movieResponse = await fetch(
       `https://api.themoviedb.org/3/search/movie?&api_key=${this.key}&query=${movieTitle}`
     );
