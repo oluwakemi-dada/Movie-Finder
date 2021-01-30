@@ -52,6 +52,8 @@ a {
 }
 
 .navbar input {
+  position: relative;
+  z-index: 1;
   outline: none;
   border: none;
   padding: 0.6rem 1.5rem;
@@ -155,6 +157,11 @@ a {
 }
 
 .movie-details-text > *:nth-child(4) {
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.movie-details-text > *:nth-child(5) {
   padding: 1rem 0;
   font-size: 1.7rem;
   text-align: justify;
@@ -279,7 +286,7 @@ a {
   height: 100%;
   background-color: rgba(117, 108, 108, 0.418);
   backdrop-filter: blur(3px);
-  z-index: 5;
+  z-index: 2;
   cursor: pointer;
 }
 
@@ -300,4 +307,86 @@ a {
 .close-modal:hover {
   background: #ffd859;
   color: #333;
+}
+
+.trailer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+  padding: 0 5%;
+}
+
+.trailer-heading {
+  font-size: 3rem;
+  margin: 2rem 0;
+}
+
+.trailer {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trailer p {
+  margin-bottom: 0.7rem;
+  font-size: 2rem;
+}
+
+iframe {
+  width: 96%;
+}
+
+.empty-trailer-msg {
+  font-size: 2rem;
+}
+
+#spinner-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c2c2c;
+  z-index: 3;
+}
+
+.spinner {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  margin-top: -3rem;
+  margin-left: -3rem;
+  box-shadow: 0 0 2px #fff;
+}
+
+.ring {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  margin-top: -3rem;
+  margin-left: -3rem;
+  box-shadow: 0 1px 0 #ffd859;
+  animation: animate 0.7s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

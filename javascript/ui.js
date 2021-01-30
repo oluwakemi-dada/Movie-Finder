@@ -46,21 +46,23 @@ class UI {
   }
 
   showMovieDetails(details) {
+    // Put genres together
     let genres = [];
     details.genres.forEach((genre) => {
       genres.push(genre.name);
     });
     const movieGenres = genres.join(' / ');
 
-    document.querySelector('.movies').innerHTML = `
+    this.movies.innerHTML = `
       <div class="movie-details">
         <div>
-        <img class="movie-img" src='${this.baseURL}${this.fileSize}${details.image}'>
+        <img src='${this.baseURL}${this.fileSize}${details.image}'>
         </div>
         <div class="movie-details-text">
           <div>${details.title}</div>
           <div>${movieGenres}</div>
           <div>${details.releaseDate}</div>
+          <div>Rating - ${details.voteAverage}</div>
           <div>${details.overview}</div>
           <div class="fav-and-back-btn">
             <a class="go-back" href="index.html"><span>&#8592;</span> Go back</a>
@@ -73,6 +75,52 @@ class UI {
         </div>
       </div>
     `;
+
+    // Trailer container
+    const trailerContainer = `
+      <div class="trailer-container"></div>
+    `;
+    this.movies.insertAdjacentHTML('beforeend', trailerContainer);
+
+    // Trailer Heading
+    const trailerHeading = `
+      <h2 class="trailer-heading">Movie Trailers</h2>
+    `;
+
+    document
+      .querySelector('.trailer-container')
+      .insertAdjacentHTML('afterbegin', trailerHeading);
+
+    // Check if there are no trailers
+    if (details.videos.length === 0) {
+      //
+      const emptyTrailerMsg = `
+        <p class="empty-trailer-msg">No Trailer</p>
+      `;
+      document
+        .querySelector('.trailer-container')
+        .insertAdjacentHTML('beforeend', emptyTrailerMsg);
+
+      // Check if there are trailer(s)
+    } else if (details.videos.length > 0) {
+      // Trailer Videos
+      details.videos.forEach((video) => {
+        const videoData = {
+          name: video.name,
+          videoLink: `https://www.youtube.com/embed/${video.key}`,
+        };
+
+        const youtube = `
+        <div class="trailer">
+          <p>${videoData.name}</p>
+          <iframe  height="345" src=${videoData.videoLink} frameborder="0" allowfullscreen></iframe>
+        </div>
+      `;
+        document
+          .querySelector('.trailer-container')
+          .insertAdjacentHTML('beforeend', youtube);
+      });
+    }
   }
 
   showPopularMovies(movies) {
@@ -102,6 +150,7 @@ class UI {
         overview: movie.overview,
         releaseDate: movie.releaseDate,
         title: movie.title,
+        voteAverage: movie.voteAverage,
       };
       favouriteMoviesList.push(newData);
     });
@@ -123,12 +172,17 @@ class UI {
       output += `
       <div class="movie-details">
         <div>
-        <img class="movie-img" src='${this.baseURL}${this.fileSize}${movie.image}'>
+        <img id=${movie.id} class="movie-img-fav" src='${this.baseURL}${
+        this.fileSize
+      }${movie.image}'>
         </div>
         <div class="movie-details-text">
           <div>${movie.title}</div>
           <div>${movie.genres}</div>
           <div>${movie.releaseDate}</div>
+          <div>Rating - ${
+            movie.voteAverage !== undefined ? movie.voteAverage : 'Nil'
+          }</div>
           <div>${movie.overview}</div>
           <div class="btn-remove-div">
             <button id='${movie.id}' class="btn-remove">Remove</button>

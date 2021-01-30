@@ -6,6 +6,7 @@ const ui = new UI();
 const movies = document.querySelector('.movies');
 const searchMovie = document.querySelector('#search-movie');
 const body = document.querySelector('body');
+const spinner = document.querySelector('#spinner-container');
 
 // GET MOVIE INFO FROM LS
 const getMovieFromLocalStorage = () => {
@@ -53,6 +54,8 @@ if (searchMovie) {
     if (userText !== '') {
       // Make http call
       movie.searchMovie(userText).then((data) => {
+        spinner.style.display = 'none';
+
         if (data.movie.results.length === 0) {
           // Show alert
         } else {
@@ -69,9 +72,14 @@ if (searchMovie) {
 
 // VIEW MOVIE DETAILS
 movies.addEventListener('click', (e) => {
-  if (e.target.className === 'movie-img') {
+  if (
+    e.target.className === 'movie-img' ||
+    e.target.className === 'movie-img-fav'
+  ) {
     // Show movie details
     movie.movieDetails(e.target.id).then((data) => {
+      spinner.style.display = 'none';
+
       const details = {
         genres: data.details.genres,
         id: data.details.id,
@@ -79,6 +87,8 @@ movies.addEventListener('click', (e) => {
         overview: data.details.overview,
         releaseDate: data.details.release_date,
         title: data.details.title,
+        videos: data.videos.results,
+        voteAverage: data.details.vote_average,
       };
 
       ui.showMovieDetails(details);
@@ -91,6 +101,9 @@ movies.addEventListener('click', (e) => {
   if (e.target.className === 'fas fa-star') {
     const targetID = parseInt(e.target.id);
     movie.movieDetails(targetID).then((data) => {
+      spinner.style.display = 'none';
+
+      // console.log(data);
       const details = {
         genres: data.details.genres,
         id: data.details.id,
@@ -98,6 +111,7 @@ movies.addEventListener('click', (e) => {
         overview: data.details.overview,
         releaseDate: data.details.release_date,
         title: data.details.title,
+        voteAverage: data.details.vote_average,
       };
       const movieInfo = getMovieFromLocalStorage();
 
@@ -198,10 +212,12 @@ body.addEventListener('keyup', (e) => {
 const init = () => {
   // Popular movies
   movie.popularMovies().then((data) => {
+    spinner.style.display = 'none';
     ui.showPopularMovies(data.popularMovies.results);
   });
   // Top rated movies
   movie.topRatedMovies().then((data) => {
+    spinner.style.display = 'none';
     ui.showTopRatedMovies(data.topRatedMovies.results);
   });
   // Update favourite movies count
