@@ -113,7 +113,7 @@ class UI {
         const youtube = `
         <div class="trailer">
           <p>${videoData.name}</p>
-          <iframe  height="345" src=${videoData.videoLink} frameborder="0" allowfullscreen></iframe>
+          <iframe src=${videoData.videoLink} frameborder="0" allowfullscreen></iframe>
         </div>
       `;
         document
